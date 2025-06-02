@@ -1,0 +1,20 @@
+version: '1.0'
+services:
+  rabbitmq:
+    image: rabbitmq:3.8-management # Use the RabbitMQ image with management plugin
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" # RabbitMQ default port
+      - "15672:15672" # Management UI port
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq # Persist RabbitMQ data
+    environment:
+      RABBITMQ_DEFAULT_USER: "yae" # Set a default username
+      RABBITMQ_DEFAULT_PASS: "123456" # Set a default password
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+volumes:
+  rabbitmq_data:
